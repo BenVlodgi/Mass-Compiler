@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassCompiler", "MassCompiler\MassCompiler.csproj", "{634508A0-6498-492B-AB16-3187A3774772}"
+	ProjectSection(ProjectDependencies) = postProject
+		{514E1EF1-D9BA-4364-8030-C0C6243A0382} = {514E1EF1-D9BA-4364-8030-C0C6243A0382}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompilerConfigurer", "CompilerConfigurer\CompilerConfigurer.csproj", "{514E1EF1-D9BA-4364-8030-C0C6243A0382}"
 EndProject

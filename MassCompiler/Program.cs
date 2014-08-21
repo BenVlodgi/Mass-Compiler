@@ -10,6 +10,8 @@ namespace MassCompiler
 {
     class Program
     {
+        const string CONFIG_FILE_NAME = "mass-compiler-config";
+
         static void Main(string[] args)
         {
 #if DEBUG
@@ -26,9 +28,12 @@ namespace MassCompiler
 
             //Above, default values are given incase we don't get info from our config file
 
-            if (File.Exists("config"))
+            
+            string executableDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            string config_path = Path.Combine(executableDir, CONFIG_FILE_NAME).Replace("file:\\", "");
+            if (File.Exists(config_path))
             {
-                var config = File.ReadAllLines("config");
+                var config = File.ReadAllLines(config_path);
                 if (config.Length > 1 && !string.IsNullOrWhiteSpace(config[1])) vbspPath = config[1];
                 if (config.Length > 3 && !string.IsNullOrWhiteSpace(config[3])) vbspParams = config[3];
                 if (config.Length > 5 && !string.IsNullOrWhiteSpace(config[5])) vradPath = config[5];
@@ -39,8 +44,8 @@ namespace MassCompiler
             }
             else
             {
-                Console.WriteLine("No config found");
-                return;
+                WriteLine("No config found", ConsoleColor.Red);
+                args = new string[] { };
             }
 
             for (int i = 0; i < args.Length; i++)

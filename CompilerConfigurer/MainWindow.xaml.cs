@@ -21,7 +21,7 @@ namespace CompilerConfigurer
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string CONFIG_FILE_PATH = "config";
+        const string CONFIG_FILE_NAME = "mass-compiler-config";
 
         public MainWindow()
         {
@@ -30,9 +30,9 @@ namespace CompilerConfigurer
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if(File.Exists(CONFIG_FILE_PATH))
+            if(File.Exists(CONFIG_FILE_NAME))
             {
-                var fileContents = File.ReadAllLines(CONFIG_FILE_PATH);
+                var fileContents = File.ReadAllLines(CONFIG_FILE_NAME);
                 vbspLocation.Text = TryGetLine(fileContents, 1);
                 vbspParameters.Text = TryGetLine(fileContents, 3);
                 vradLocation.Text = TryGetLine(fileContents, 5);
@@ -58,7 +58,7 @@ namespace CompilerConfigurer
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            File.WriteAllLines(CONFIG_FILE_PATH,new string[]{
+            File.WriteAllLines(CONFIG_FILE_NAME,new string[]{
                 "vbsp.exe Path:",  vbspLocation.Text,
                 "vbsp.exe Parameters:", vbspParameters.Text,
                 "vrad.exe Path:", vradLocation.Text,
