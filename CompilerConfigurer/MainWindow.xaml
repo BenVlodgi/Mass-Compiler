@@ -1,16 +1,20 @@
 ﻿<Window x:Class="CompilerConfigurer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Mass Compiler Configuration" Height="250" Width="700" Background="AliceBlue"
+        Title="Mass Compiler Configuration" Height="280" Width="800" Background="AliceBlue"
         Loaded="Window_Loaded">
     <Grid Margin="5" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Use {0} to use filepath\filename without extension" />
-        <Grid Grid.Row="1">
+        <TextBlock Grid.Row="0" Text="Use {0} to use filepath\filename without extension."  />
+        <TextBlock Grid.Row="1" Text="If you use the [Detect] configs, remember to replace the vmf path\filename with ''{0}''" Foreground="Red" />
+        <TextBlock Grid.Row="2" Text="Include the quotation marks if your path is going to contain spaces (or just to be safe)." Foreground="Red" />
+        <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -42,7 +46,7 @@
             <TextBlock Grid.Row="6" Grid.Column="0" Text="BSP Directory:" VerticalAlignment="Center"/>
             <TextBox Grid.Row="6" Grid.Column="1" Name="bspDirectory"  TextChanged="TextChanged" />
         </Grid>
-        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+        <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -50,8 +54,8 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <!--<Button Grid.Column="3" Content="Detect" Background="Lavender" /> -->
-            <Button Grid.Column="4" Content="Save" Background="Lavender" Click="Button_Click" Name="SaveButton" />
+            <Button Grid.Column="3" Content="Detect" Background="Lavender" Click="DetectButton_Click" />
+            <Button Grid.Column="4" Content="Save" Background="Lavender" Click="SaveButton_Click" Name="SaveButton" />
         </Grid>
     </Grid>
 </Window>

@@ -51,7 +51,12 @@ namespace CompilerConfigurer
                 string.Empty;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SaveButton.IsEnabled = true;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             File.WriteAllLines(CONFIG_FILE_PATH,new string[]{
                 "vbsp.exe Path:",  vbspLocation.Text,
@@ -66,9 +71,16 @@ namespace CompilerConfigurer
             SaveButton.IsEnabled = false;
         }
 
-        private void TextChanged(object sender, TextChangedEventArgs e)
+        private void DetectButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveButton.IsEnabled = true;
+            DetectWindow dw = new DetectWindow();
+            dw.ShowDialog();
+            if (dw.VBSPLocation != string.Empty) vbspLocation.Text = dw.VBSPLocation;
+            if (dw.VBSPParameters != string.Empty) vbspParameters.Text = dw.VBSPParameters;
+            if (dw.VRADLocation != string.Empty) vradLocation.Text = dw.VRADLocation;
+            if (dw.VRADParameters != string.Empty) vradParameters.Text = dw.VRADParameters;
+            if (dw.VVISLocation != string.Empty) vvisLocation.Text = dw.VVISLocation;
+            if (dw.VVISParameters != string.Empty) vvisParameters.Text = dw.VVISParameters;
         }
     }
 }

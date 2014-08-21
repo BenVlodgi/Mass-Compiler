@@ -1,0 +1,62 @@
+﻿<Window x:Class="CompilerConfigurer.DetectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detect" Height="270" Width="500" Background="AliceBlue"
+        WindowStyle="ToolWindow">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Run the compiler from Hammer, and we'll be listening and grabbing parameters." />
+        <TextBlock Grid.Row="1" Text="Checkbox the ones you want to keep and press [OK]." />
+        <Grid Grid.Row="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <CheckBox  Grid.Row="0" Grid.Column="0" Name="vbspLocationCheckBox" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="VBSP Location:" VerticalAlignment="Center" Margin="5" />
+            <TextBox   Grid.Row="0" Grid.Column="2" Name="vbspLocation" />
+            <CheckBox  Grid.Row="1" Grid.Column="0" Name="vbspParametersCheckBox" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="VBSP Parameters:" VerticalAlignment="Center" Margin="5" />
+            <TextBox   Grid.Row="1" Grid.Column="2" Name="vbspParameters" />
+
+            <CheckBox  Grid.Row="2" Grid.Column="0" Name="vradLocationCheckBox" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="VRAD Location:" VerticalAlignment="Center" Margin="5" />
+            <TextBox   Grid.Row="2" Grid.Column="2" Name="vradLocation" />
+            <CheckBox  Grid.Row="3" Grid.Column="0" Name="vradParametersCheckBox" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="VRAD Parameters:" VerticalAlignment="Center" Margin="5"/>
+            <TextBox   Grid.Row="3" Grid.Column="2" Name="vradParameters" />
+
+            <CheckBox  Grid.Row="4" Grid.Column="0" Name="vvisLocationCheckBox" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="VVIS Location:" VerticalAlignment="Center" Margin="5" />
+            <TextBox   Grid.Row="4" Grid.Column="2" Name="vvisLocation" />
+            <CheckBox  Grid.Row="5" Grid.Column="0" Name="vvisParametersCheckBox" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="VVIS Parameters:" VerticalAlignment="Center" Margin="5" />
+            <TextBox   Grid.Row="5" Grid.Column="2" Name="vvisParameters" />
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="2" Content="Cancel" Background="Lavender" Click="CancelButton_Click" />
+            <Button Grid.Column="3" Content="OK" Click="OKButton_Click" Background="Lavender" />
+        </Grid>
+    </Grid>
+</Window>
