@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("CompilerConfigurer")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright © 2014 Benjamin Thomas Blodgett")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
