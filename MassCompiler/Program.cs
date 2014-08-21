@@ -16,7 +16,7 @@ namespace MassCompiler
             args = new string[] { "dev_room.vmf" };
 #endif
 
-            string vbspPath=string.Empty;
+            string vbspPath = string.Empty;
             string vbspParams = string.Empty;
             string vradPath = string.Empty;
             string vradParams = string.Empty;
@@ -49,37 +49,34 @@ namespace MassCompiler
                 try
                 {
                     string filename = args[i].Replace(".vmf", "");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Compiling vmf {0} / {1} ({2})", i + 1, args.Length, filename);
-                    Console.ForegroundColor = ConsoleColor.Gray;
+
+                    WriteLine("Compiling vmf {0} / {1} ({2})", ConsoleColor.Yellow, ConsoleColor.Black, i + 1, args.Length, filename);
                     Process proc;
 
-                    Console.WriteLine("Running VBSP...");
-                    Console.ForegroundColor = ConsoleColor.White; Console.Write("vbsp.exe "); 
-                    Console.ForegroundColor = ConsoleColor.Cyan; Console.WriteLine(string.Format(vbspParams, filename)); 
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    WriteLine("Running VBSP...", ConsoleColor.Yellow);
+                    Write('"' + vbspPath + '"', ConsoleColor.Black, ConsoleColor.White);
+                    WriteLine(' ' + vbspParams, ConsoleColor.Cyan, ConsoleColor.Black, filename);
                     proc = Process.Start(new ProcessStartInfo(vbspPath, string.Format(vbspParams, filename)) { UseShellExecute = false, RedirectStandardOutput = true });
                     Console.WriteLine(proc.StandardOutput.ReadToEnd());
                     proc.WaitForExit();
-                    Console.WriteLine("Finished.");
+                    WriteLine("Finished.", ConsoleColor.Yellow);
 
-                    Console.WriteLine("Running VVIS...");
-                    Console.ForegroundColor = ConsoleColor.White; Console.Write("vvis.exe ");
-                    Console.ForegroundColor = ConsoleColor.Cyan; Console.WriteLine(string.Format(vvisParams, filename));
-                    Console.ForegroundColor = ConsoleColor.Gray;
+
+                    WriteLine("Running VVIS...", ConsoleColor.Yellow);
+                    Write('"' + vvisPath + '"', ConsoleColor.Black, ConsoleColor.White);
+                    WriteLine(' ' + vvisParams, ConsoleColor.Cyan, ConsoleColor.Black, filename);
                     proc = Process.Start(new ProcessStartInfo(vvisPath, string.Format(vvisParams, filename)) { UseShellExecute = false, RedirectStandardOutput = true });
                     Console.WriteLine(proc.StandardOutput.ReadToEnd());
                     proc.WaitForExit();
-                    Console.WriteLine("Finished.");
+                    WriteLine("Finished.", ConsoleColor.Yellow);
 
-                    Console.WriteLine("Running VRAD...");
-                    Console.ForegroundColor = ConsoleColor.White; Console.Write("vrad.exe ");
-                    Console.ForegroundColor = ConsoleColor.Cyan; Console.WriteLine(string.Format(vradParams, filename));
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    WriteLine("Running VRAD...", ConsoleColor.Yellow);
+                    Write('"' + vradPath + '"', ConsoleColor.Black, ConsoleColor.White);
+                    WriteLine(' ' + vradParams, ConsoleColor.Cyan, ConsoleColor.Black, filename);
                     proc = Process.Start(new ProcessStartInfo(vradPath, string.Format(vradParams, filename)) { UseShellExecute = false, RedirectStandardOutput = true });
                     Console.WriteLine(proc.StandardOutput.ReadToEnd());
                     proc.WaitForExit();
-                    Console.WriteLine("Finished.");
+                    WriteLine("Finished.", ConsoleColor.Yellow);
 
                     //string bspName = args[i].Replace(".vmf", ".bsp");
                     //if (!Directory.Exists(outputdirectory))
@@ -88,22 +85,39 @@ namespace MassCompiler
                 }
                 catch (Exception ex)
                 {
-                    ConsoleColor saveit = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("There was an exception");
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.WriteLine(ex.ToString());
-                    Console.ForegroundColor = saveit;
+                    WriteLine("There was an exception", ConsoleColor.Red);
+                    Console.WriteLine(ex.ToString(), ConsoleColor.Yellow);
                 }
                 finally
                 {
                     DateTime end = DateTime.Now;
-                    Console.WriteLine("Finished. Took {0} sconds.", end - start);
+                    WriteLine("Took {0} sconds.",ConsoleColor.Yellow, ConsoleColor.Black, end - start);
                 }
             }
 
             Console.WriteLine("All done, press any key to continue...");
             Console.ReadKey(true);
+        }
+        private static void WriteLine(string format, ConsoleColor foreground = ConsoleColor.Gray, ConsoleColor background = ConsoleColor.Black, params object[] args)
+        {
+            ConsoleColor f = Console.ForegroundColor;
+            ConsoleColor b = Console.BackgroundColor;
+            Console.ForegroundColor = foreground;
+            Console.BackgroundColor = background;
+            Console.WriteLine(format, args);
+            Console.ForegroundColor = f;
+            Console.BackgroundColor = b;
+        }
+
+        private static void Write(string format, ConsoleColor foreground = ConsoleColor.Gray, ConsoleColor background = ConsoleColor.Black, params object[] args)
+        {
+            ConsoleColor f = Console.ForegroundColor;
+            ConsoleColor b = Console.BackgroundColor;
+            Console.ForegroundColor = foreground;
+            Console.BackgroundColor = background;
+            Console.Write(format, args);
+            Console.ForegroundColor = f;
+            Console.BackgroundColor = b;
         }
     }
 }
