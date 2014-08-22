@@ -11,12 +11,17 @@ namespace MassCompiler
     class Program
     {
         const string CONFIG_FILE_NAME = "mass-compiler-config";
+        const string RECENT_MAPS_NAME = "last-compile.vmflst";
 
         static void Main(string[] args)
         {
 #if DEBUG
             args = new string[] { "dev_room.vmf" };
 #endif
+
+            string executableDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            string configPath = Path.Combine(executableDir, CONFIG_FILE_NAME).Replace("file:\\", "");
+            string recentMapsPath = Path.Combine(executableDir, RECENT_MAPS_NAME).Replace("file:\\", "");
 
             string vbspPath = string.Empty;
             string vbspParams = string.Empty;
@@ -28,12 +33,10 @@ namespace MassCompiler
 
             //Above, default values are given incase we don't get info from our config file
 
-            
-            string executableDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-            string config_path = Path.Combine(executableDir, CONFIG_FILE_NAME).Replace("file:\\", "");
-            if (File.Exists(config_path))
+
+            if (File.Exists(configPath))
             {
-                var config = File.ReadAllLines(config_path);
+                var config = File.ReadAllLines(configPath);
                 if (config.Length > 1 && !string.IsNullOrWhiteSpace(config[1])) vbspPath = config[1];
                 if (config.Length > 3 && !string.IsNullOrWhiteSpace(config[3])) vbspParams = config[3];
                 if (config.Length > 5 && !string.IsNullOrWhiteSpace(config[5])) vradPath = config[5];
@@ -48,14 +51,35 @@ namespace MassCompiler
                 args = new string[] { };
             }
 
-            for (int i = 0; i < args.Length; i++)
+            // Look also for lists of vmfs
+            List<string> mapFiles = new List<string>();;
+            foreach(var file in args)
+            {
+                if(file.EndsWith(".vmf"))
+                {
+                    mapFiles.Add(file);
+                }
+                else if(file.EndsWith(".vmflst"))
+                {
+                    foreach(var line in File.ReadAllLines(file))
+                    {
+                        if(line.EndsWith(".vmf"))
+                        {
+                            mapFiles.Add(line);
+                        }
+                    }
+                }
+            }
+            File.WriteAllLines(recentMapsPath, mapFiles.ToArray());
+
+            for (int i = 0; i < mapFiles.Count; i++)
             {
                 DateTime start = DateTime.Now;
                 try
                 {
-                    string filename = args[i].Replace(".vmf", "");
+                    string filename = mapFiles[i].Replace(".vmf", "");
 
-                    WriteLine("Compiling vmf {0} / {1} ({2})", ConsoleColor.Yellow, ConsoleColor.Black, i + 1, args.Length, filename);
+                    WriteLine("Compiling vmf {0} / {1} ({2})", ConsoleColor.Yellow, ConsoleColor.Black, i + 1, mapFiles.Count, filename);
                     Process proc;
 
                     WriteLine("Running VBSP...", ConsoleColor.Yellow);
