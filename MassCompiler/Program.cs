@@ -52,18 +52,18 @@ namespace MassCompiler
             }
 
             // Look also for lists of vmfs
-            List<string> mapFiles = new List<string>();;
-            foreach(var file in args)
+            List<string> mapFiles = new List<string>(); ;
+            foreach (var file in args)
             {
-                if(file.EndsWith(".vmf"))
+                if (file.EndsWith(".vmf"))
                 {
                     mapFiles.Add(file);
                 }
-                else if(file.EndsWith(".vmflst"))
+                else if (file.EndsWith(".vmflst"))
                 {
-                    foreach(var line in File.ReadAllLines(file))
+                    foreach (var line in File.ReadAllLines(file))
                     {
-                        if(line.EndsWith(".vmf"))
+                        if (line.EndsWith(".vmf"))
                         {
                             mapFiles.Add(line);
                         }
@@ -120,7 +120,7 @@ namespace MassCompiler
                 finally
                 {
                     DateTime end = DateTime.Now;
-                    WriteLine("Took {0} sconds.",ConsoleColor.Yellow, ConsoleColor.Black, end - start);
+                    WriteLine("Took {0} sconds.", ConsoleColor.Yellow, ConsoleColor.Black, end - start);
                 }
             }
 
