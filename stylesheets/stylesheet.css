@@ -161,8 +161,11 @@ a.button span {
 #view-on-github span {
   background: transparent url(../images/octocat-icon.png) 12px 50% no-repeat;
 }
+#download-build span {
+  background: transparent url(../images/box-icon.png) 12px 50% no-repeat;
+}
 #view-on-github {
-  margin-right: 0;
+margin-bottom: 12px;
 }
 
 code, pre {
@@ -355,7 +358,7 @@ footer a:hover {
   #downloads {
     margin-bottom: 25px;
   }
-  #download-zip, #download-tar-gz {
+  #download-zip, #download-tar-gz, #download-build {
     display: none;
   }
   .inner {
