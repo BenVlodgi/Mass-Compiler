@@ -107,10 +107,24 @@ namespace MassCompiler
                     proc.WaitForExit();
                     WriteLine("Finished.", ConsoleColor.Yellow);
 
-                    //string bspName = args[i].Replace(".vmf", ".bsp");
-                    //if (!Directory.Exists(outputdirectory))
-                    //    Directory.CreateDirectory(outputdirectory);
-                    //File.Copy(bspName, outputdirectory + bspName);
+                    string bspFullName = args[i].Replace(".vmf", ".bsp");
+                    string bspName = bspFullName.Substring(bspFullName.LastIndexOf('\\')+1);
+                    string bspPath = Path.Combine(outputdirectory, bspName);
+                    WriteLine(bspPath);
+                    if (File.Exists(bspFullName))
+                    {
+                        if (!string.IsNullOrWhiteSpace(outputdirectory))
+                        {
+                            if (!Directory.Exists(outputdirectory))
+                                Directory.CreateDirectory(outputdirectory);
+                            File.Copy(bspFullName, bspPath, true);
+                        }
+                        else
+                        {
+                            Write("BSPs directory not set. ", ConsoleColor.Red);
+                            WriteLine("Copies of the compiled BSPs will not be placed in a set directory. You will find the compiled BSP next to the VMF it was compiled from.", ConsoleColor.Yellow);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
