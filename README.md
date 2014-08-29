@@ -1,7 +1,7 @@
 ##Mass-Compiler
 
 
-###To set up a configuration file
+####To set up a configuration file
 
 - Run CompilerConfigurer.exe 
 - Press [Detect]
