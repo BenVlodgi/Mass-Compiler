@@ -89,13 +89,13 @@ namespace CompilerConfigurer
                         {
                             if (!string.IsNullOrEmpty(location) && vbspLocation.Text != location)
                             {
-                                vbspLocationCheckBox.IsChecked = false;
+                                vbspLocationCheckBox.IsChecked = true;
                                 vbspLocation.Text = location;
                             }
                             if (!string.IsNullOrEmpty(parameters) && vbspParameters.Text != parameters)
                             {
                                 vbspParameters.Text = parameters;
-                                vbspParametersCheckBox.IsChecked = false;
+                                vbspParametersCheckBox.IsChecked = true;
                             }
                         });
                     }
@@ -120,12 +120,12 @@ namespace CompilerConfigurer
                             if (!string.IsNullOrEmpty(location) && vradLocation.Text != location)
                             {
                                 vradLocation.Text = location;
-                                vradLocationCheckBox.IsChecked = false;
+                                vradLocationCheckBox.IsChecked = true;
                             }
                             if (!string.IsNullOrEmpty(parameters) && vradParameters.Text != parameters)
                             {
                                 vradParameters.Text = parameters;
-                                vradParametersCheckBox.IsChecked = false;
+                                vradParametersCheckBox.IsChecked = true;
                             }
                         });
                     }
@@ -150,12 +150,12 @@ namespace CompilerConfigurer
                             if (!string.IsNullOrEmpty(location) && vvisLocation.Text != location)
                             {
                                 vvisLocation.Text = location;
-                                vvisLocationCheckBox.IsChecked = false;
+                                vvisLocationCheckBox.IsChecked = true;
                             }
                             if (!string.IsNullOrEmpty(parameters) && vvisParameters.Text != parameters)
                             {
                                 vvisParameters.Text = parameters;
-                                vvisParametersCheckBox.IsChecked = false;
+                                vvisParametersCheckBox.IsChecked = true;
                             }
                         });
                     }
