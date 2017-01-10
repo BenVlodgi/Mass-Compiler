@@ -11,7 +11,7 @@
 - Watch the Detect screen as it populates with your params, feel free to close compiler now
 - Checkbox the configs you want to keep
 - Press [OK]
-- In the parameter boxes, replace the map "filepath\filename" with "{0}", make sure the {0} is wrapped in "quotation marks"
+- Set a directory to place your output bsps
 - Press [Save]
 
 ####To compile maps
