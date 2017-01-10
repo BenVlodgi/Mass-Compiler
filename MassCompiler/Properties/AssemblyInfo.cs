@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MassCompiler")]
-[assembly: AssemblyCopyright("Copyright © 2014 Benjamin Thomas Blodgett")]
+[assembly: AssemblyCopyright("Copyright © 2017 Benjamin Thomas Blodgett")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
