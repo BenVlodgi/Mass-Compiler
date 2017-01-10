@@ -94,7 +94,7 @@ namespace CompilerConfigurer
                             }
                             if (!string.IsNullOrEmpty(parameters) && vbspParameters.Text != parameters)
                             {
-                                vbspParameters.Text = parameters;
+                                vbspParameters.Text = fixupParameters(parameters);
                                 vbspParametersCheckBox.IsChecked = true;
                             }
                         });
@@ -124,7 +124,7 @@ namespace CompilerConfigurer
                             }
                             if (!string.IsNullOrEmpty(parameters) && vradParameters.Text != parameters)
                             {
-                                vradParameters.Text = parameters;
+                                vradParameters.Text = fixupParameters(parameters);
                                 vradParametersCheckBox.IsChecked = true;
                             }
                         });
@@ -154,7 +154,7 @@ namespace CompilerConfigurer
                             }
                             if (!string.IsNullOrEmpty(parameters) && vvisParameters.Text != parameters)
                             {
-                                vvisParameters.Text = parameters;
+                                vvisParameters.Text = fixupParameters(parameters);
                                 vvisParametersCheckBox.IsChecked = true;
                             }
                         });
@@ -183,6 +183,24 @@ namespace CompilerConfigurer
                 location = commandLine.Substring(0, commandLine.IndexOf(' '));
                 parameters = commandLine.Substring(commandLine.IndexOf(' ') + 1).Trim();
             }
+        }
+
+        private string fixupParameters(string value)
+        {
+            var paramparts = value.Split(new char[] { '"' });
+            var inQuoteParts = paramparts.Where((x, i) => i % 2 == 1);
+
+            // This could cause a problem if there is a map with the same name of the game in the game root folder
+            // It would then also change that path to a {0}
+            
+            foreach (var part in inQuoteParts)
+            {
+                var vmfpath = part.EndsWith(".vmf") ? part : part + ".vmf";
+                if (File.Exists(vmfpath))
+                    value = value.Replace(part, "{0}");
+            }
+
+            return value;
         }
     }
 }

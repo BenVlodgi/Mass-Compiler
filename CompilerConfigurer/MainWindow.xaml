@@ -12,7 +12,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Use {0} to use filepath\filename without extension."  />
-        <TextBlock Grid.Row="1" Text="If you use the [Detect] configs, remember to replace the vmf path\filename with ''{0}''" Foreground="Red" />
+        <TextBlock Grid.Row="1" Text="If you manually type in the parameters, remember to replace the vmf path\filename with ''{0}''" Foreground="Red" />
         <TextBlock Grid.Row="2" Text="Include the quotation marks if your path is going to contain spaces (or just to be safe)." Foreground="Red" />
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
