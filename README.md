@@ -1,8 +1,8 @@
-##Mass-Compiler
+## Mass-Compiler
 
 [benvlodgi.github.io/Mass-Compiler](http://benvlodgi.github.io/Mass-Compiler/)
 
-####To set up a configuration file
+#### To set up a configuration file
 
 - Run CompilerConfigurer.exe 
 - Press [Detect]
@@ -14,7 +14,7 @@
 - Set a directory to place your output bsps
 - Press [Save]
 
-####To compile maps
+#### To compile maps
 
 - Create a shortcut to the MassCompiler.exe or use the exe directly
 - Drag the map(s) you want to compile onto the MassCompiler shortcut or exe
