@@ -1,3 +1,5 @@
+[![Mass Compiler Releases](https://img.shields.io/github/downloads/BenVlodgi/Mass-Compiler/total)](https://github.com/BenVlodgi/Mass-Compiler/releases)
+
 ## Mass-Compiler
 
 [benvlodgi.github.io/Mass-Compiler](http://benvlodgi.github.io/Mass-Compiler/)
